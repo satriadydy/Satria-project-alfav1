@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Link SAT Akses via HP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #d32f2f, #ff5252);
+      color: #fff;
+      padding: 0;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .header img {
+      max-height: 60px;
+    }
+    .header h1 {
+      font-size: 20px;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    .form-group {
+      margin: 15px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 15px;
+      outline: none;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #ffffff;
+      color: #d32f2f;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ffebee;
+    }
+    .link-section {
+      margin-top: 30px;
+    }
+    .link-section a {
+      display: block;
+      padding: 12px;
+      background-color: rgba(255,255,255,0.1);
+      margin: 8px 0;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: background 0.3s;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .link-section a.active {
+      pointer-events: auto;
+      background-color: rgba(255,255,255,0.2);
+      opacity: 1;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+      color: #ffecec;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Alfamart_logo.svg/512px-Alfamart_logo.svg.png" alt="Logo Alfamart">
+      <h1>Link SAT Akses via HP</h1>
+    </div>
+
+    <div class="form-group">
+      <label for="branch">Kode Branch</label>
+      <input type="text" id="branch" placeholder="Contoh: PZ01">
+    </div>
+
+    <div class="form-group">
+      <label for="toko">Kode Toko</label>
+      <input type="text" id="toko" placeholder="Contoh: PB48">
+    </div>
+
+    <div class="form-group">
+      <label for="nik">NIK Karyawan</label>
+      <input type="text" id="nik" placeholder="Contoh: 22088181">
+    </div>
+
+    <button onclick="aktifkanLink()">Tampilkan Link</button>
+
+    <div class="link-section" id="linkList">
+      <a id="link1" href="https://intranet.sat.co.id/humancapital/public/index/mainmenu">1. Human Capital</a>
+      <a id="link2" href="https://intranet.sat.co.id/rrak/public/">2. RRAK</a>
+      <a id="link3" href="https://intranet.sat.co.id/bst_online/signin">3. BST Online</a>
+      <a id="link4" href="https://intranet.sat.co.id/koperasi/public/">4. KOPKAR</a>
+      <a id="link5" href="https://hosokartoko0201.sat.co.id">5. SO Karyawan</a>
+      <a id="link6" href="https://intranet.sat.co.id/st/public/so/atm">6. SO ATM / Tenant</a>
+      <a id="link7">7. PSM</a>
+      <a id="link8">8. VOID TRX Khusus Pejabat Toko</a>
+    </div>
+
+    <footer>
+      © 2025 Satria Dwi Yansah
+    </footer>
+  </div>
+
+  <script>
+    function aktifkanLink() {
+      const branch = document.getElementById("branch").value.trim();
+      const toko = document.getElementById("toko").value.trim();
+      const nik = document.getElementById("nik").value.trim();
+
+      if (!branch || !toko || !nik) {
+        alert("Mohon lengkapi semua isian.");
+        return;
+      }
+
+      // Simpan ke localStorage
+      localStorage.setItem("branch", branch);
+      localStorage.setItem("toko", toko);
+      localStorage.setItem("nik", nik);
+
+      tampilkanLink(branch, toko, nik);
+    }
+
+    function tampilkanLink(branch, toko, nik) {
+      // Aktifkan semua link statis
+      for (let i = 1; i <= 6; i++) {
+        document.getElementById("link" + i).classList.add("active");
+      }
+
+      const param = `/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/${nik}`;
+      const linkPSM = `https://intranet.sat.co.id/pdmstore/public/index/index/KD_TOKO/${toko}/KD_BRANCH/${branch}${param}`;
+      const linkVOID = `https://intranet.sat.co.id/otp/public/index/index/KD_TOKO/${toko}/KD_BRANCH/${branch}${param}`;
+
+      const link7 = document.getElementById("link7");
+      link7.href = linkPSM;
+      link7.classList.add("active");
+
+      const link8 = document.getElementById("link8");
+      link8.href = linkVOID;
+      link8.classList.add("active");
+    }
+
+    // Cek apakah data sudah tersimpan
+    window.onload = function() {
+      const branch = localStorage.getItem("branch");
+      const toko = localStorage.getItem("toko");
+      const nik = localStorage.getItem("nik");
+
+      if (branch && toko && nik) {
+        document.getElementById("branch").value = branch;
+        document.getElementById("toko").value = toko;
+        document.getElementById("nik").value = nik;
+        tampilkanLink(branch, toko, nik);
+      }
+    };
+  </script>
+
+</body>
+</html>
