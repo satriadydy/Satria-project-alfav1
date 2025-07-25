@@ -1,186 +1,190 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Link SAT Akses via HP</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAT Akses via HP</title>
   <style>
-    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #d32f2f, #ff5252);
-      color: #fff;
-      padding: 0;
+      background: linear-gradient(to bottom, #ff4d4d, #ffe6e6);
+      color: #333;
     }
-    .container {
-      max-width: 500px;
-      margin: auto;
+
+    header {
+      background-color: white;
+      text-align: center;
+      padding: 10px 0;
+      border-bottom: 3px solid #cc0000;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 0 auto;
       padding: 20px;
     }
-    .header {
-      text-align: center;
-      padding: 20px 0;
+
+    .input-group {
+      margin-bottom: 15px;
     }
-    .header img {
-      max-height: 60px;
-    }
-    .header h1 {
-      font-size: 20px;
-      margin-top: 10px;
-      font-weight: 600;
-    }
-    .form-group {
-      margin: 15px 0;
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 15px;
-      font-weight: bold;
-    }
+
     input {
       width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      font-size: 15px;
-      outline: none;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
     }
+
     button {
-      margin-top: 20px;
       width: 100%;
       padding: 12px;
-      background-color: #ffffff;
-      color: #d32f2f;
+      background-color: #cc0000;
+      color: white;
+      font-weight: bold;
       font-size: 16px;
       border: none;
-      border-radius: 6px;
-      font-weight: bold;
+      border-radius: 10px;
       cursor: pointer;
+      margin-bottom: 20px;
     }
-    button:hover {
-      background-color: #ffebee;
+
+    .btn-reset {
+      background-color: gray;
+      margin-top: 10px;
     }
-    .link-section {
-      margin-top: 30px;
+
+    .link-list {
+      list-style: none;
+      padding: 0;
     }
-    .link-section a {
+
+    .link-list li {
+      margin-bottom: 12px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    .link-list a {
       display: block;
-      padding: 12px;
-      background-color: rgba(255,255,255,0.1);
-      margin: 8px 0;
-      border-radius: 6px;
+      padding: 15px;
+      font-weight: bold;
       text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      transition: background 0.3s;
+      color: white;
+    }
+
+    .inactive {
       pointer-events: none;
+      filter: grayscale(100%);
       opacity: 0.5;
     }
-    .link-section a.active {
-      pointer-events: auto;
-      background-color: rgba(255,255,255,0.2);
-      opacity: 1;
-    }
+
+    .link1 { background-color: #e74c3c; }
+    .link2 { background-color: #8e44ad; }
+    .link3 { background-color: #2980b9; }
+    .link4 { background-color: #16a085; }
+    .link5 { background-color: #d35400; }
+    .link6 { background-color: #27ae60; }
+    .link7 { background-color: #2c3e50; }
+    .link8 { background-color: #7f8c8d; }
+
     footer {
       text-align: center;
-      margin-top: 40px;
-      font-size: 12px;
-      color: #ffecec;
+      padding: 20px;
+      font-size: 14px;
+      color: #777;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="header">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Alfamart_logo.svg/512px-Alfamart_logo.svg.png" alt="Logo Alfamart">
-      <h1>Link SAT Akses via HP</h1>
+  <header>
+    <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" alt="Logo Alfamart">
+  </header>
+
+  <main>
+    <div id="formInput">
+      <div class="input-group">
+        <input type="text" id="branch" placeholder="Masukkan Branch (contoh: PZ01)" required>
+      </div>
+      <div class="input-group">
+        <input type="text" id="kodeToko" placeholder="Masukkan Kode Toko (contoh: PB48)" required>
+      </div>
+      <div class="input-group">
+        <input type="text" id="nik" placeholder="Masukkan NIK Karyawan (contoh: 22088181)" required>
+      </div>
+      <button onclick="simpanData()">Tampilkan Link</button>
     </div>
 
-    <div class="form-group">
-      <label for="branch">Kode Branch</label>
-      <input type="text" id="branch" placeholder="Contoh: PZ01">
-    </div>
+    <ul class="link-list" id="linkList" style="display:none;">
+      <li><a href="https://intranet.sat.co.id/humancapital/public/index/mainmenu" target="_blank" class="link1">1. Human Capital</a></li>
+      <li><a href="https://intranet.sat.co.id/rrak/public/" target="_blank" class="link2">2. RRAK</a></li>
+      <li><a href="https://intranet.sat.co.id/bst_online/signin" target="_blank" class="link3">3. BST Online</a></li>
+      <li><a href="https://intranet.sat.co.id/koperasi/public/" target="_blank" class="link4">4. KOPKAR</a></li>
+      <li><a href="https://hosokartoko0201.sat.co.id" target="_blank" class="link5">5. SO Karyawan</a></li>
+      <li><a href="https://intranet.sat.co.id/st/public/so/atm" target="_blank" class="link6">6. SO ATM / Tenant</a></li>
+      <li><a href="#" id="psmLink" target="_blank" class="link7 inactive">7. PSM</a></li>
+      <li><a href="#" id="voidLink" target="_blank" class="link8 inactive">8. VOID TRX Khusus Pejabat Toko</a></li>
+    </ul>
 
-    <div class="form-group">
-      <label for="toko">Kode Toko</label>
-      <input type="text" id="toko" placeholder="Contoh: PB48">
-    </div>
+    <button class="btn-reset" onclick="resetData()" id="resetBtn" style="display:none;">Ganti Data</button>
+  </main>
 
-    <div class="form-group">
-      <label for="nik">NIK Karyawan</label>
-      <input type="text" id="nik" placeholder="Contoh: 22088181">
-    </div>
-
-    <button onclick="aktifkanLink()">Tampilkan Link</button>
-
-    <div class="link-section" id="linkList">
-      <a id="link1" href="https://intranet.sat.co.id/humancapital/public/index/mainmenu">1. Human Capital</a>
-      <a id="link2" href="https://intranet.sat.co.id/rrak/public/">2. RRAK</a>
-      <a id="link3" href="https://intranet.sat.co.id/bst_online/signin">3. BST Online</a>
-      <a id="link4" href="https://intranet.sat.co.id/koperasi/public/">4. KOPKAR</a>
-      <a id="link5" href="https://hosokartoko0201.sat.co.id">5. SO Karyawan</a>
-      <a id="link6" href="https://intranet.sat.co.id/st/public/so/atm">6. SO ATM / Tenant</a>
-      <a id="link7">7. PSM</a>
-      <a id="link8">8. VOID TRX Khusus Pejabat Toko</a>
-    </div>
-
-    <footer>
-      © 2025 Satria Dwi Yansah
-    </footer>
-  </div>
+  <footer>
+    © 2025 Satria Dwi Yansah
+  </footer>
 
   <script>
-    function aktifkanLink() {
-      const branch = document.getElementById("branch").value.trim();
-      const toko = document.getElementById("toko").value.trim();
-      const nik = document.getElementById("nik").value.trim();
+    function simpanData() {
+      const branch = document.getElementById('branch').value.trim();
+      const kodeToko = document.getElementById('kodeToko').value.trim();
+      const nik = document.getElementById('nik').value.trim();
 
-      if (!branch || !toko || !nik) {
-        alert("Mohon lengkapi semua isian.");
+      if (!branch || !kodeToko || !nik) {
+        alert("Semua kolom wajib diisi!");
         return;
       }
 
-      // Simpan ke localStorage
       localStorage.setItem("branch", branch);
-      localStorage.setItem("toko", toko);
+      localStorage.setItem("kodeToko", kodeToko);
       localStorage.setItem("nik", nik);
 
-      tampilkanLink(branch, toko, nik);
+      tampilkanLink(branch, kodeToko, nik);
     }
 
-    function tampilkanLink(branch, toko, nik) {
-      // Aktifkan semua link statis
-      for (let i = 1; i <= 6; i++) {
-        document.getElementById("link" + i).classList.add("active");
-      }
+    function tampilkanLink(branch, kodeToko, nik) {
+      const base = "https://intranet.sat.co.id";
+      const param = `/index/index/KD_TOKO/${kodeToko}/KD_BRANCH/${branch}/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/${nik}`;
 
-      const param = `/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/${nik}`;
-      const linkPSM = `https://intranet.sat.co.id/pdmstore/public/index/index/KD_TOKO/${toko}/KD_BRANCH/${branch}${param}`;
-      const linkVOID = `https://intranet.sat.co.id/otp/public/index/index/KD_TOKO/${toko}/KD_BRANCH/${branch}${param}`;
+      document.getElementById('psmLink').href = `${base}/pdmstore/public${param}`;
+      document.getElementById('voidLink').href = `${base}/otp/public${param}`;
+      document.getElementById('psmLink').classList.remove("inactive");
+      document.getElementById('voidLink').classList.remove("inactive");
 
-      const link7 = document.getElementById("link7");
-      link7.href = linkPSM;
-      link7.classList.add("active");
-
-      const link8 = document.getElementById("link8");
-      link8.href = linkVOID;
-      link8.classList.add("active");
+      document.getElementById('formInput').style.display = "none";
+      document.getElementById('linkList').style.display = "block";
+      document.getElementById('resetBtn').style.display = "block";
     }
 
-    // Cek apakah data sudah tersimpan
-    window.onload = function() {
+    function resetData() {
+      localStorage.clear();
+      location.reload();
+    }
+
+    // Saat halaman dibuka, cek apakah sudah ada data
+    window.onload = () => {
       const branch = localStorage.getItem("branch");
-      const toko = localStorage.getItem("toko");
+      const kodeToko = localStorage.getItem("kodeToko");
       const nik = localStorage.getItem("nik");
 
-      if (branch && toko && nik) {
-        document.getElementById("branch").value = branch;
-        document.getElementById("toko").value = toko;
-        document.getElementById("nik").value = nik;
-        tampilkanLink(branch, toko, nik);
+      if (branch && kodeToko && nik) {
+        tampilkanLink(branch, kodeToko, nik);
       }
     };
   </script>
