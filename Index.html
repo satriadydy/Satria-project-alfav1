@@ -1,199 +1,182 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portal SAT - Satria Dwi Yansah</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <script src="https://kit.fontawesome.com/a2e0e6ad2f.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAT App Portal</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #8B0000, #6A0DAD, #FF69B4);
+      padding: 0;
+      background: linear-gradient(to bottom right, #8B0000, #800080, #FFC0CB);
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      color: white;
+      align-items: center;
+      flex-direction: column;
     }
-
-    .container {
-      max-width: 500px;
-      width: 90%;
-      padding: 20px;
+    .login-card {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
       text-align: center;
     }
-
-    .logo {
-      width: 120px;
-      margin-bottom: 10px;
-    }
-
-    .developer-name {
-      font-weight: bold;
-      font-size: 1rem;
-      background: linear-gradient(to right, #00FFFF, #FF00FF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-    }
-
     input {
-      padding: 10px;
-      width: 90%;
-      margin: 8px 0;
-      border-radius: 10px;
+      padding: 0.8rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
       border: none;
-      outline: none;
       text-transform: uppercase;
-      font-weight: bold;
     }
-
     button {
-      background: linear-gradient(to right, #FF4500, #FF6347);
+      padding: 0.8rem 1.5rem;
       border: none;
-      padding: 12px 20px;
-      margin-top: 15px;
-      border-radius: 10px;
+      border-radius: 0.5rem;
+      background: #ff4d4d;
       color: white;
-      font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 99, 71, 0.6);
-      transition: transform 0.2s ease;
+      transition: 0.3s;
     }
-
     button:hover {
-      transform: scale(1.05);
+      box-shadow: 0 0 10px #ff4d4d;
     }
-
-    .link-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-top: 30px;
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+      gap: 1rem;
+      padding: 1rem;
     }
-
     .link-card {
-      padding: 15px;
-      border-radius: 15px;
+      padding: 1rem;
+      border-radius: 1rem;
       color: white;
       font-weight: bold;
-      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      text-align: center;
+      width: 140px;
       text-decoration: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.2s ease;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
     }
-
     .link-card:hover {
       transform: scale(1.05);
     }
-
     .footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #fff;
-      opacity: 0.7;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: white;
     }
-
-    .icon {
-      margin-right: 8px;
+    .logo {
+      width: 100px;
+      margin-bottom: 0.5rem;
     }
-
-    @media (max-width: 480px) {
-      .link-grid {
-        grid-template-columns: 1fr;
-      }
+    .developer {
+      font-weight: bold;
+      font-size: 1rem;
+      background: linear-gradient(to right, #ff0000, #ff7f7f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   </style>
 </head>
 <body>
-  <div class="container" id="app"></div>
+  <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" class="logo" alt="Logo">
+  <div class="developer">satria dwi yansah</div>
+  <div class="login-card" id="loginCard">
+    <input type="text" id="nik" placeholder="NIK" />
+    <input type="text" id="kodeToko" placeholder="Kode Toko" />
+    <input type="text" id="kodeBranch" placeholder="Kode Branch" />
+    <button onclick="saveData()">Simpan Data</button>
+  </div>  <div class="links" id="linkList" style="display:none;"></div>
+  <button id="resetBtn" style="display:none;margin-top:1rem;background:#555;" onclick="resetData()">Hapus Data</button>  <div class="footer">Copyright ©️2025 satria dwi yansah</div>  <script>
+    const gradients = [
+      ['#00c6ff', '#0072ff'],
+      ['#f2709c', '#ff9472'],
+      ['#8E2DE2', '#4A00E0'],
+      ['#FF5F6D', '#FFC371'],
+      ['#11998e', '#38ef7d'],
+      ['#ff9966', '#ff5e62'],
+      ['#00F260', '#0575E6'],
+      ['#e1eec3', '#f05053'],
+      ['#3a1c71', '#d76d77', '#ffaf7b'],
+      ['#fc466b', '#3f5efb']
+    ];
 
-  <script>
-    const app = document.getElementById("app");
-
-    const links = [
+    const staticLinks = [
       { name: "Human Capital", url: "https://intranet.sat.co.id/humancapital/public/index/mainmenu", icon: "fa-users" },
       { name: "RRAK", url: "https://intranet.sat.co.id/rrak/public/", icon: "fa-chart-line" },
       { name: "BST Online", url: "https://intranet.sat.co.id/bst_online/signin", icon: "fa-file-signature" },
       { name: "KOPKAR", url: "https://intranet.sat.co.id/koperasi/public/", icon: "fa-store" },
       { name: "SO Karyawan", url: "https://hosokartoko0201.sat.co.id", icon: "fa-user-circle" },
       { name: "Reset PIN", url: "https://intranet.sat.co.id/", icon: "fa-unlock-alt" },
-      { name: "PSM", url: "https://intranet.sat.co.id/pdmstore/public/index/index/KD_TOKO/PB49/KD_BRANCH/PZ01/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/22088181", icon: "fa-clipboard-list" },
       { name: "Time Management", url: "https://sat-time-management-mobile-rjzigbgnna-et.a.run.app", icon: "fa-clock" },
       { name: "OTP Online Void", url: "https://hootp0203.sat.co.id", icon: "fa-shield-alt" },
       { name: "Input KWH", url: "https://so-kwh-app-o6erzqylia-et.a.run.app", icon: "fa-bolt" }
     ];
 
-    const savedData = localStorage.getItem("userData");
-
-    function renderLogin() {
-      app.innerHTML = `
-        <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" alt="Alfamart Logo" class="logo">
-        <div class="developer-name">satria dwi yansah</div>
-        <h2>Masukkan Data</h2>
-        <input id="branch" placeholder="KODE BRANCH (contoh: PZ01)" />
-        <input id="store" placeholder="KODE TOKO (contoh: PB49)" />
-        <input id="nik" placeholder="NIK KARYAWAN" />
-        <button onclick="saveData()">Simpan Data</button>
-      `;
-    }
-
-    function renderLinks(data) {
-      const replacedLinks = links.map(link => {
-        const updatedUrl = link.url
-          .replace(/PZ01/g, data.branch)
-          .replace(/PB49/g, data.store)
-          .replace(/22088181/g, data.nik);
-        return { ...link, url: updatedUrl };
-      });
-
-      app.innerHTML = `
-        <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" alt="Alfamart Logo" class="logo">
-        <div class="developer-name">satria dwi yansah</div>
-        <div class="link-grid">
-          ${replacedLinks.map(l => `
-            <a href="${l.url}" target="_blank" class="link-card" style="background: linear-gradient(to right, hsl(${Math.random()*360}, 100%, 60%), hsl(${Math.random()*360}, 100%, 70%))">
-              <i class="fas ${l.icon} icon"></i> ${l.name}
-            </a>
-          `).join("")}
-        </div>
-        <button style="margin-top:30px; background: rgba(255,255,255,0.1); border: 1px solid white;" onclick="resetData()">Hapus Data</button>
-        <div class="footer">Copyright ©️2025 satria dwi yansah</div>
-      `;
-    }
-
     function saveData() {
-      const branch = document.getElementById("branch").value.trim().toUpperCase();
-      const store = document.getElementById("store").value.trim().toUpperCase();
-      const nik = document.getElementById("nik").value.trim();
-      if (!branch || !store || !nik) return alert("Semua data wajib diisi!");
+      const nik = document.getElementById('nik').value.toUpperCase();
+      const kodeToko = document.getElementById('kodeToko').value.toUpperCase();
+      const kodeBranch = document.getElementById('kodeBranch').value.toUpperCase();
 
-      const userData = { branch, store, nik };
-      localStorage.setItem("userData", JSON.stringify(userData));
-      renderLinks(userData);
-    }
-
-    function resetData() {
-      if (confirm("Yakin ingin hapus data dan login ulang?")) {
-        localStorage.removeItem("userData");
-        renderLogin();
+      if (nik && kodeToko && kodeBranch) {
+        const data = { nik, kodeToko, kodeBranch };
+        localStorage.setItem('userData', JSON.stringify(data));
+        showLinks();
       }
     }
 
-    if (savedData) {
-      renderLinks(JSON.parse(savedData));
-    } else {
-      renderLogin();
+    function resetData() {
+      if (confirm('Yakin ingin hapus data dan login ulang?')) {
+        localStorage.removeItem('userData');
+        location.reload();
+      }
     }
-  </script>
-</body>
+
+    function showLinks() {
+      const loginCard = document.getElementById('loginCard');
+      const linkList = document.getElementById('linkList');
+      const resetBtn = document.getElementById('resetBtn');
+
+      const userData = JSON.parse(localStorage.getItem('userData'));
+      if (!userData) return;
+
+      loginCard.style.display = 'none';
+      linkList.style.display = 'flex';
+      resetBtn.style.display = 'inline-block';
+
+      linkList.innerHTML = '';
+      const fullLinks = [...staticLinks];
+
+      const psmLink = `https://intranet.sat.co.id/pdmstore/public/index/index/KD_TOKO/${userData.kodeToko}/KD_BRANCH/${userData.kodeBranch}/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/${userData.nik}`;
+      fullLinks.push({ name: "PSM", url: psmLink, icon: "fa-clipboard-list" });
+
+      fullLinks.forEach((link, i) => {
+        const div = document.createElement('a');
+        div.className = 'link-card';
+        div.href = link.url;
+        div.target = '_blank';
+        div.style.background = `linear-gradient(to right, ${gradients[i % gradients.length].join(', ')})`;
+        div.innerHTML = `<i class="fas ${link.icon}"></i><br>${link.name}`;
+        linkList.appendChild(div);
+      });
+    }
+
+    if (navigator.onLine) {
+      if (localStorage.getItem('userData')) {
+        showLinks();
+      }
+    } else {
+      document.body.innerHTML = '<h2 style="color:white;text-align:center">Tidak ada koneksi internet</h2>';
+    }
+  </script></body>
 </html>
