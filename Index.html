@@ -1,279 +1,199 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SAT Akses</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a2e0c6adcd.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portal SAT - Satria Dwi Yansah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a2e0e6ad2f.js" crossorigin="anonymous"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
     body {
-      background: linear-gradient(135deg, #8B0000, #800080, #FF69B4);
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #8B0000, #6A0DAD, #FF69B4);
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       color: white;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 90%;
       padding: 20px;
-    }
-
-    .logo-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
       text-align: center;
-      margin-bottom: 20px;
     }
 
-    .logo-container img {
-      width: 100px;
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
+    .logo {
+      width: 120px;
+      margin-bottom: 10px;
     }
 
-    .logo-container .developer-name {
-      margin-top: 8px;
-      font-weight: 600;
-      font-size: 16px;
-      letter-spacing: 2px;
-      font-style: italic;
-      background: linear-gradient(90deg, #ff3d3d, #ff87c2);
+    .developer-name {
+      font-weight: bold;
+      font-size: 1rem;
+      background: linear-gradient(to right, #00FFFF, #FF00FF);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 1px 1px 3px rgba(255, 61, 61, 0.7);
-      user-select: none;
-    }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
       margin-bottom: 20px;
-      text-align: center;
     }
 
     input {
-      width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
+      width: 90%;
+      margin: 8px 0;
+      border-radius: 10px;
       border: none;
+      outline: none;
       text-transform: uppercase;
+      font-weight: bold;
     }
 
     button {
-      margin-top: 15px;
-      padding: 10px 20px;
+      background: linear-gradient(to right, #FF4500, #FF6347);
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: #ff4d4d;
+      padding: 12px 20px;
+      margin-top: 15px;
+      border-radius: 10px;
       color: white;
       font-weight: bold;
-      transition: 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 99, 71, 0.6);
+      transition: transform 0.2s ease;
     }
 
     button:hover {
-      background: #ff1a1a;
-      box-shadow: 0 0 10px #ff4d4d;
+      transform: scale(1.05);
     }
 
-    .link-container {
-      display: flex;
-      flex-direction: column;
+    .link-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 15px;
-      width: 100%;
-      max-width: 500px;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     .link-card {
-      display: flex;
-      align-items: center;
-      gap: 10px;
       padding: 15px;
       border-radius: 15px;
       color: white;
       font-weight: bold;
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
       text-decoration: none;
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
     }
 
     .link-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-blue {
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-    }
-
-    .card-green {
-      background: linear-gradient(135deg, #00ff87, #60efff);
-    }
-
-    .card-orange {
-      background: linear-gradient(135deg, #ff9966, #ff5e62);
-    }
-
-    .card-purple {
-      background: linear-gradient(135deg, #9d50bb, #6e48aa);
-    }
-
-    .card-red {
-      background: linear-gradient(135deg, #f85032, #e73827);
-    }
-
-    .delete-button {
-      font-size: 12px;
-      margin-top: 30px;
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .delete-button:hover {
-      background: rgba(255, 77, 77, 0.6);
+      transform: scale(1.05);
     }
 
     .footer {
       margin-top: 40px;
-      font-size: 14px;
-      opacity: 0.8;
-      text-align: center;
-      width: 100%;
+      font-size: 0.9rem;
+      color: #fff;
+      opacity: 0.7;
+    }
+
+    .icon {
+      margin-right: 8px;
+    }
+
+    @media (max-width: 480px) {
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="logo-container">
-    <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" alt="Logo Alfamart" />
-    <div class="developer-name">satria dwi yansah</div>
-  </div>
-
-  <div id="app"></div>
-
-  <div class="footer">Copyright ©️2025 satria dwi yansah</div>
+  <div class="container" id="app"></div>
 
   <script>
-    const userDataKey = "userLoginData";
     const app = document.getElementById("app");
 
-    const icons = [
-      "fa-user",
-      "fa-chart-line",
-      "fa-book",
-      "fa-store",
-      "fa-users",
-      "fa-building",
-      "fa-clock",
-      "fa-shield-halved",
-      "fa-bolt",
-    ];
-
     const links = [
-      {
-        name: "Human Capital",
-        url: "https://intranet.sat.co.id/humancapital/public/index/mainmenu",
-      },
-      { name: "RRAK", url: "https://intranet.sat.co.id/rrak/public/" },
-      { name: "BST Online", url: "https://intranet.sat.co.id/bst_online/signin" },
-      { name: "KOPKAR", url: "https://intranet.sat.co.id/koperasi/public/" },
-      { name: "SO Karyawan", url: "https://hosokartoko0201.sat.co.id" },
-      { name: "SO ATM / Tenant", url: "https://intranet.sat.co.id/" },
-      {
-        name: "PSM",
-        dynamic: true,
-        baseUrl:
-          "https://intranet.sat.co.id/pdmstore/public/index/index/KD_TOKO/{KD_TOKO}/KD_BRANCH/{KD_BRANCH}/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/{NIK}",
-      },
-      {
-        name: "Time Management Absen",
-        url: "https://sat-time-management-mobile-rjzigbgnna-et.a.run.app",
-      },
-      { name: "OTP Online VOID", url: "https://hootp0203.sat.co.id" },
-      { name: "Input KWH", url: "https://so-kwh-app-o6erzqylia-et.a.run.app" },
+      { name: "Human Capital", url: "https://intranet.sat.co.id/humancapital/public/index/mainmenu", icon: "fa-users" },
+      { name: "RRAK", url: "https://intranet.sat.co.id/rrak/public/", icon: "fa-chart-line" },
+      { name: "BST Online", url: "https://intranet.sat.co.id/bst_online/signin", icon: "fa-file-signature" },
+      { name: "KOPKAR", url: "https://intranet.sat.co.id/koperasi/public/", icon: "fa-store" },
+      { name: "SO Karyawan", url: "https://hosokartoko0201.sat.co.id", icon: "fa-user-circle" },
+      { name: "Reset PIN", url: "https://intranet.sat.co.id/", icon: "fa-unlock-alt" },
+      { name: "PSM", url: "https://intranet.sat.co.id/pdmstore/public/index/index/KD_TOKO/PB49/KD_BRANCH/PZ01/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/22088181", icon: "fa-clipboard-list" },
+      { name: "Time Management", url: "https://sat-time-management-mobile-rjzigbgnna-et.a.run.app", icon: "fa-clock" },
+      { name: "OTP Online Void", url: "https://hootp0203.sat.co.id", icon: "fa-shield-alt" },
+      { name: "Input KWH", url: "https://so-kwh-app-o6erzqylia-et.a.run.app", icon: "fa-bolt" }
     ];
 
-    function buildLinkCard(link, idx, data) {
-      let url = link.url;
-      if (link.dynamic && data) {
-        url = link.baseUrl
-          .replace("{KD_TOKO}", data.kd_toko)
-          .replace("{KD_BRANCH}", data.kd_branch)
-          .replace("{NIK}", data.nik);
-      }
-      return `<a href="${url}" class="link-card card-${
-        ["blue", "green", "orange", "purple", "red"][idx % 5]
-      }" target="_blank">
-        <i class="fas ${icons[idx % icons.length]}"></i> ${link.name}
-      </a>`;
+    const savedData = localStorage.getItem("userData");
+
+    function renderLogin() {
+      app.innerHTML = `
+        <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" alt="Alfamart Logo" class="logo">
+        <div class="developer-name">satria dwi yansah</div>
+        <h2>Masukkan Data</h2>
+        <input id="branch" placeholder="KODE BRANCH (contoh: PZ01)" />
+        <input id="store" placeholder="KODE TOKO (contoh: PB49)" />
+        <input id="nik" placeholder="NIK KARYAWAN" />
+        <button onclick="saveData()">Simpan Data</button>
+      `;
     }
 
     function renderLinks(data) {
-      app.innerHTML = `<div class="link-container">
-        ${links.map((link, idx) => buildLinkCard(link, idx, data)).join("")}
-        <button class="delete-button" onclick="resetData()">Hapus Data & Login Ulang</button>
-      </div>`;
+      const replacedLinks = links.map(link => {
+        const updatedUrl = link.url
+          .replace(/PZ01/g, data.branch)
+          .replace(/PB49/g, data.store)
+          .replace(/22088181/g, data.nik);
+        return { ...link, url: updatedUrl };
+      });
+
+      app.innerHTML = `
+        <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" alt="Alfamart Logo" class="logo">
+        <div class="developer-name">satria dwi yansah</div>
+        <div class="link-grid">
+          ${replacedLinks.map(l => `
+            <a href="${l.url}" target="_blank" class="link-card" style="background: linear-gradient(to right, hsl(${Math.random()*360}, 100%, 60%), hsl(${Math.random()*360}, 100%, 70%))">
+              <i class="fas ${l.icon} icon"></i> ${l.name}
+            </a>
+          `).join("")}
+        </div>
+        <button style="margin-top:30px; background: rgba(255,255,255,0.1); border: 1px solid white;" onclick="resetData()">Hapus Data</button>
+        <div class="footer">Copyright ©️2025 satria dwi yansah</div>
+      `;
+    }
+
+    function saveData() {
+      const branch = document.getElementById("branch").value.trim().toUpperCase();
+      const store = document.getElementById("store").value.trim().toUpperCase();
+      const nik = document.getElementById("nik").value.trim();
+      if (!branch || !store || !nik) return alert("Semua data wajib diisi!");
+
+      const userData = { branch, store, nik };
+      localStorage.setItem("userData", JSON.stringify(userData));
+      renderLinks(userData);
     }
 
     function resetData() {
       if (confirm("Yakin ingin hapus data dan login ulang?")) {
-        localStorage.removeItem(userDataKey);
-        location.reload();
+        localStorage.removeItem("userData");
+        renderLogin();
       }
     }
 
-    function renderForm() {
-      app.innerHTML = `
-        <div class="glass-card">
-          <h2 style="margin-bottom: 15px;">Login Data</h2>
-          <input id="kd_branch" placeholder="Kode Branch (Contoh: PZ01)" />
-          <input id="kd_toko" placeholder="Kode Toko (Contoh: PB49)" />
-          <input id="nik" placeholder="NIK Karyawan (Contoh: 22088181)" />
-          <button onclick="saveData()">Simpan Data</button>
-        </div>`;
-    }
-
-    function saveData() {
-      const data = {
-        kd_branch: document.getElementById("kd_branch").value.toUpperCase(),
-        kd_toko: document.getElementById("kd_toko").value.toUpperCase(),
-        nik: document.getElementById("nik").value.toUpperCase(),
-      };
-      if (!data.kd_branch || !data.kd_toko || !data.nik) {
-        alert("Semua data harus diisi!");
-        return;
-      }
-      localStorage.setItem(userDataKey, JSON.stringify(data));
-      renderLinks(data);
-    }
-
-    const saved = localStorage.getItem(userDataKey);
-    if (saved) {
-      renderLinks(JSON.parse(saved));
+    if (savedData) {
+      renderLinks(JSON.parse(savedData));
     } else {
-      renderForm();
+      renderLogin();
     }
   </script>
 </body>
-
 </html>
