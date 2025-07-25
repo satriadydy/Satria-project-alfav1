@@ -1,193 +1,279 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SAT Akses via HP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SAT Akses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a2e0c6adcd.js" crossorigin="anonymous"></script>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #ff4d4d, #ffe6e6);
-      color: #333;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    header {
-      background-color: white;
-      text-align: center;
-      padding: 10px 0;
-      border-bottom: 3px solid #cc0000;
-    }
-
-    header img {
-      height: 60px;
-    }
-
-    main {
-      max-width: 600px;
-      margin: 0 auto;
+    body {
+      background: linear-gradient(135deg, #8B0000, #800080, #FF69B4);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
       padding: 20px;
     }
 
-    .input-group {
-      margin-bottom: 15px;
+    .logo-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-container img {
+      width: 100px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .logo-container .developer-name {
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 2px;
+      font-style: italic;
+      background: linear-gradient(90deg, #ff3d3d, #ff87c2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px 3px rgba(255, 61, 61, 0.7);
+      user-select: none;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      text-transform: uppercase;
     }
 
     button {
-      width: 100%;
-      padding: 12px;
-      background-color: #cc0000;
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #ff4d4d;
       color: white;
       font-weight: bold;
-      font-size: 16px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-bottom: 20px;
+      transition: 0.3s ease;
     }
 
-    .btn-reset {
-      background-color: gray;
-      margin-top: 10px;
+    button:hover {
+      background: #ff1a1a;
+      box-shadow: 0 0 10px #ff4d4d;
     }
 
-    .link-list {
-      list-style: none;
-      padding: 0;
+    .link-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
     }
 
-    .link-list li {
-      margin-bottom: 12px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    }
-
-    .link-list a {
-      display: block;
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       padding: 15px;
+      border-radius: 15px;
+      color: white;
       font-weight: bold;
       text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .link-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-blue {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+    }
+
+    .card-green {
+      background: linear-gradient(135deg, #00ff87, #60efff);
+    }
+
+    .card-orange {
+      background: linear-gradient(135deg, #ff9966, #ff5e62);
+    }
+
+    .card-purple {
+      background: linear-gradient(135deg, #9d50bb, #6e48aa);
+    }
+
+    .card-red {
+      background: linear-gradient(135deg, #f85032, #e73827);
+    }
+
+    .delete-button {
+      font-size: 12px;
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
       color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
-    .inactive {
-      pointer-events: none;
-      filter: grayscale(100%);
-      opacity: 0.5;
+    .delete-button:hover {
+      background: rgba(255, 77, 77, 0.6);
     }
 
-    .link1 { background-color: #e74c3c; }
-    .link2 { background-color: #8e44ad; }
-    .link3 { background-color: #2980b9; }
-    .link4 { background-color: #16a085; }
-    .link5 { background-color: #d35400; }
-    .link6 { background-color: #27ae60; }
-    .link7 { background-color: #2c3e50; }
-    .link8 { background-color: #7f8c8d; }
-
-    footer {
-      text-align: center;
-      padding: 20px;
+    .footer {
+      margin-top: 40px;
       font-size: 14px;
-      color: #777;
+      opacity: 0.8;
+      text-align: center;
+      width: 100%;
     }
   </style>
 </head>
+
 <body>
+  <div class="logo-container">
+    <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" alt="Logo Alfamart" />
+    <div class="developer-name">satria dwi yansah</div>
+  </div>
 
-  <header>
-    <img src="https://i.postimg.cc/KjNvb7qR/images-4.jpg" alt="Logo Alfamart">
-  </header>
+  <div id="app"></div>
 
-  <main>
-    <div id="formInput">
-      <div class="input-group">
-        <input type="text" id="branch" placeholder="Masukkan Branch (contoh: PZ01)" required>
-      </div>
-      <div class="input-group">
-        <input type="text" id="kodeToko" placeholder="Masukkan Kode Toko (contoh: PB48)" required>
-      </div>
-      <div class="input-group">
-        <input type="text" id="nik" placeholder="Masukkan NIK Karyawan (contoh: 22088181)" required>
-      </div>
-      <button onclick="simpanData()">Tampilkan Link</button>
-    </div>
-
-    <ul class="link-list" id="linkList" style="display:none;">
-      <li><a href="https://intranet.sat.co.id/humancapital/public/index/mainmenu" target="_blank" class="link1">1. Human Capital</a></li>
-      <li><a href="https://intranet.sat.co.id/rrak/public/" target="_blank" class="link2">2. RRAK</a></li>
-      <li><a href="https://intranet.sat.co.id/bst_online/signin" target="_blank" class="link3">3. BST Online</a></li>
-      <li><a href="https://intranet.sat.co.id/koperasi/public/" target="_blank" class="link4">4. KOPKAR</a></li>
-      <li><a href="https://hosokartoko0201.sat.co.id" target="_blank" class="link5">5. SO Karyawan</a></li>
-      <li><a href="https://intranet.sat.co.id/st/public/so/atm" target="_blank" class="link6">6. SO ATM / Tenant</a></li>
-      <li><a href="#" id="psmLink" target="_blank" class="link7 inactive">7. PSM</a></li>
-      <li><a href="#" id="voidLink" target="_blank" class="link8 inactive">8. VOID TRX Khusus Pejabat Toko</a></li>
-    </ul>
-
-    <button class="btn-reset" onclick="resetData()" id="resetBtn" style="display:none;">Ganti Data</button>
-  </main>
-
-  <footer>
-    © 2025 Satria Dwi Yansah
-  </footer>
+  <div class="footer">Copyright ©️2025 satria dwi yansah</div>
 
   <script>
-    function simpanData() {
-      const branch = document.getElementById('branch').value.trim();
-      const kodeToko = document.getElementById('kodeToko').value.trim();
-      const nik = document.getElementById('nik').value.trim();
+    const userDataKey = "userLoginData";
+    const app = document.getElementById("app");
 
-      if (!branch || !kodeToko || !nik) {
-        alert("Semua kolom wajib diisi!");
-        return;
+    const icons = [
+      "fa-user",
+      "fa-chart-line",
+      "fa-book",
+      "fa-store",
+      "fa-users",
+      "fa-building",
+      "fa-clock",
+      "fa-shield-halved",
+      "fa-bolt",
+    ];
+
+    const links = [
+      {
+        name: "Human Capital",
+        url: "https://intranet.sat.co.id/humancapital/public/index/mainmenu",
+      },
+      { name: "RRAK", url: "https://intranet.sat.co.id/rrak/public/" },
+      { name: "BST Online", url: "https://intranet.sat.co.id/bst_online/signin" },
+      { name: "KOPKAR", url: "https://intranet.sat.co.id/koperasi/public/" },
+      { name: "SO Karyawan", url: "https://hosokartoko0201.sat.co.id" },
+      { name: "SO ATM / Tenant", url: "https://intranet.sat.co.id/st/public/so/atm" },
+      {
+        name: "PSM",
+        dynamic: true,
+        baseUrl:
+          "https://intranet.sat.co.id/pdmstore/public/index/index/KD_TOKO/{KD_TOKO}/KD_BRANCH/{KD_BRANCH}/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/{NIK}",
+      },
+      {
+        name: "Time Management Absen",
+        url: "https://sat-time-management-mobile-rjzigbgnna-et.a.run.app",
+      },
+      { name: "OTP Online VOID", url: "https://hootp0203.sat.co.id" },
+      { name: "Input KWH", url: "https://so-kwh-app-o6erzqylia-et.a.run.app" },
+    ];
+
+    function buildLinkCard(link, idx, data) {
+      let url = link.url;
+      if (link.dynamic && data) {
+        url = link.baseUrl
+          .replace("{KD_TOKO}", data.kd_toko)
+          .replace("{KD_BRANCH}", data.kd_branch)
+          .replace("{NIK}", data.nik);
       }
-
-      localStorage.setItem("branch", branch);
-      localStorage.setItem("kodeToko", kodeToko);
-      localStorage.setItem("nik", nik);
-
-      tampilkanLink(branch, kodeToko, nik);
+      return `<a href="${url}" class="link-card card-${
+        ["blue", "green", "orange", "purple", "red"][idx % 5]
+      }" target="_blank">
+        <i class="fas ${icons[idx % icons.length]}"></i> ${link.name}
+      </a>`;
     }
 
-    function tampilkanLink(branch, kodeToko, nik) {
-      const base = "https://intranet.sat.co.id";
-      const param = `/index/index/KD_TOKO/${kodeToko}/KD_BRANCH/${branch}/r/63917/c/eaf202df07ab00472fbae1d3a845be72/e/250922/j/105800/nk/${nik}`;
-
-      document.getElementById('psmLink').href = `${base}/pdmstore/public${param}`;
-      document.getElementById('voidLink').href = `${base}/otp/public${param}`;
-      document.getElementById('psmLink').classList.remove("inactive");
-      document.getElementById('voidLink').classList.remove("inactive");
-
-      document.getElementById('formInput').style.display = "none";
-      document.getElementById('linkList').style.display = "block";
-      document.getElementById('resetBtn').style.display = "block";
+    function renderLinks(data) {
+      app.innerHTML = `<div class="link-container">
+        ${links.map((link, idx) => buildLinkCard(link, idx, data)).join("")}
+        <button class="delete-button" onclick="resetData()">Hapus Data & Login Ulang</button>
+      </div>`;
     }
 
     function resetData() {
-      localStorage.clear();
-      location.reload();
+      if (confirm("Yakin ingin hapus data dan login ulang?")) {
+        localStorage.removeItem(userDataKey);
+        location.reload();
+      }
     }
 
-    // Saat halaman dibuka, cek apakah sudah ada data
-    window.onload = () => {
-      const branch = localStorage.getItem("branch");
-      const kodeToko = localStorage.getItem("kodeToko");
-      const nik = localStorage.getItem("nik");
+    function renderForm() {
+      app.innerHTML = `
+        <div class="glass-card">
+          <h2 style="margin-bottom: 15px;">Login Data</h2>
+          <input id="kd_branch" placeholder="Kode Branch (Contoh: PZ01)" />
+          <input id="kd_toko" placeholder="Kode Toko (Contoh: PB49)" />
+          <input id="nik" placeholder="NIK Karyawan (Contoh: 22088181)" />
+          <button onclick="saveData()">Simpan Data</button>
+        </div>`;
+    }
 
-      if (branch && kodeToko && nik) {
-        tampilkanLink(branch, kodeToko, nik);
+    function saveData() {
+      const data = {
+        kd_branch: document.getElementById("kd_branch").value.toUpperCase(),
+        kd_toko: document.getElementById("kd_toko").value.toUpperCase(),
+        nik: document.getElementById("nik").value.toUpperCase(),
+      };
+      if (!data.kd_branch || !data.kd_toko || !data.nik) {
+        alert("Semua data harus diisi!");
+        return;
       }
-    };
-  </script>
+      localStorage.setItem(userDataKey, JSON.stringify(data));
+      renderLinks(data);
+    }
 
+    const saved = localStorage.getItem(userDataKey);
+    if (saved) {
+      renderLinks(JSON.parse(saved));
+    } else {
+      renderForm();
+    }
+  </script>
 </body>
+
 </html>
